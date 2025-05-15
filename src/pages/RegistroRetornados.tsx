@@ -43,6 +43,8 @@ function RegistroRetornados() {
   const [remainingWeight, setRemainingWeight] = useState<number>(0);
   const [remainingPages, setRemainingPages] = useState<number>(0);
   const [recoveredValue, setRecoveredValue] = useState<number>(0);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const {
     register,
@@ -103,21 +105,29 @@ function RegistroRetornados() {
   }, [selectedToner, watchPesoRetornado, selectedDestino]);
 
   const fetchToners = async () => {
-    const { data, error } = await supabase.from('toners').select('*');
-    if (error) {
+    try {
+      setLoading(true);
+      setError(null);
+      const { data, error } = await supabase.from('toners').select('*');
+      if (error) throw error;
+      setToners(data || []);
+    } catch (error: any) {
       console.error('Erro ao buscar toners:', error);
-      return;
+      setError('Erro ao buscar toners. Por favor, tente novamente mais tarde.');
+    } finally {
+      setLoading(false);
     }
-    setToners(data);
   };
 
   const fetchUnidades = async () => {
-    const { data, error } = await supabase.from('unidades').select('*');
-    if (error) {
+    try {
+      const { data, error } = await supabase.from('unidades').select('*');
+      if (error) throw error;
+      setUnidades(data || []);
+    } catch (error: any) {
       console.error('Erro ao buscar unidades:', error);
-      return;
+      setError('Erro ao buscar unidades. Por favor, tente novamente mais tarde.');
     }
-    setUnidades(data);
   };
 
   const getProgressBarColor = (percentage: number) => {
@@ -187,9 +197,26 @@ function RegistroRetornados() {
     }
   };
 
+  if (loading && toners.length === 0) {
+    return (
+      <div className="max-w-4xl mx-auto bg-white rounded-lg shadow p-6">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-6">Registro de Retornados</h2>
+        <div className="flex justify-center items-center h-40">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#3f4c6b]"></div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-4xl mx-auto bg-white rounded-lg shadow p-6">
       <h2 className="text-2xl font-semibold text-gray-800 mb-6">Registro de Retornados</h2>
+      
+      {error && (
+        <div className="mb-6 p-4 bg-red-100 text-red-700 rounded-lg">
+          {error}
+        </div>
+      )}
       
       <form onSubmit={handleSubmit(onSubmitForm)} className="space-y-6">
         <div className="grid grid-cols-2 gap-6">
