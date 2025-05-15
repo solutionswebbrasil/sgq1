@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { Database, Box, Truck, Shield, FileSpreadsheet, AlertTriangle, ClipboardCheck, FileText, BarChart, LogOut } from 'lucide-react';
+import { Database, Box, Truck, Shield, FileSpreadsheet, AlertTriangle, ClipboardCheck, BarChart, LogOut } from 'lucide-react';
 import Footer from './Footer';
 import useDarkMode from '../hooks/useDarkMode';
 
@@ -9,7 +9,6 @@ const menuCategories = {
     { path: '/cadastro-toners', label: 'Cadastro de Toners', icon: Database },
     { path: '/cadastro-unidades', label: 'Cadastro de Unidades', icon: Box },
     { path: '/cadastro-formularios-auditoria', label: 'Cadastro de Formulários de Auditoria', icon: ClipboardCheck },
-    { path: '/cadastro-its', label: 'Cadastro de ITs', icon: FileText },
   ],
   'Registros - Qualidade': [
     { path: '/registro-garantias', label: 'Registro de Garantias', icon: Shield },
@@ -17,7 +16,6 @@ const menuCategories = {
     { path: '/registro-movimentacoes', label: 'Registro de Movimentações', icon: Truck },
     { path: '/registro-retornados', label: 'Registro de Retornados', icon: Box },
     { path: '/registro-nc', label: 'Registro de NC', icon: AlertTriangle },
-    { path: '/registro-its', label: 'Registro de ITs', icon: FileText },
   ],
   'Registros - Auditoria': [
     { path: '/registro-auditoria', label: 'Registro de Auditoria', icon: ClipboardCheck },
@@ -31,7 +29,6 @@ const menuCategories = {
     { path: '/consulta-tco', label: 'Consulta de TCO', icon: FileSpreadsheet },
     { path: '/consulta-nc', label: 'Consulta de NC', icon: AlertTriangle },
     { path: '/consulta-auditorias', label: 'Consulta de Auditorias', icon: ClipboardCheck },
-    { path: '/consulta-its', label: 'Consulta de ITs', icon: FileText },
   ],
   Gráficos: [
     { path: '/graficos', label: 'Análise de Dados', icon: BarChart },

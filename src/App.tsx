@@ -22,9 +22,6 @@ import RegistroNC from './pages/RegistroNC';
 import ConsultaNC from './pages/ConsultaNC';
 import RegistroAuditoria from './pages/RegistroAuditoria';
 import ConsultaAuditorias from './pages/ConsultaAuditorias';
-import CadastroITs from './pages/CadastroITs';
-import RegistroITs from './pages/RegistroITs';
-import ConsultaITs from './pages/ConsultaITs';
 import Graficos from './pages/Graficos';
 
 function App() {
@@ -45,7 +42,6 @@ function App() {
               <Route path="cadastro-toners" element={<CadastroToners />} />
               <Route path="cadastro-unidades" element={<CadastroUnidades />} />
               <Route path="cadastro-formularios-auditoria" element={<CadastroFormulariosAuditoria />} />
-              <Route path="cadastro-its" element={<CadastroITs />} />
               
               {/* Registros */}
               <Route path="registro-retornados" element={<RegistroRetornados />} />
@@ -54,7 +50,6 @@ function App() {
               <Route path="tco" element={<TCO />} />
               <Route path="registro-nc" element={<RegistroNC />} />
               <Route path="registro-auditoria" element={<RegistroAuditoria />} />
-              <Route path="registro-its" element={<RegistroITs />} />
               
               {/* Consultas */}
               <Route path="consulta-toners" element={<ConsultaToners />} />
@@ -65,7 +60,6 @@ function App() {
               <Route path="consulta-tco" element={<ConsultaTCO />} />
               <Route path="consulta-nc" element={<ConsultaNC />} />
               <Route path="consulta-auditorias" element={<ConsultaAuditorias />} />
-              <Route path="consulta-its" element={<ConsultaITs />} />
               
               {/* Gráficos */}
               <Route path="graficos" element={<Graficos />} />
